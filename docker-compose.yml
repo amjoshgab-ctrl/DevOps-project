@@ -1,0 +1,29 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app.py:/app/app.py  # for live code updates
+    environment:
+      FLASK_ENV: development  # so it auto-reloads
+      DB_HOST: db
+      DB_NAME: ihifix
+      DB_USER: ihifix
+      DB_PASSWORD: ihifixpassword
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ihifix
+      POSTGRES_USER: ihifix
+      POSTGRES_PASSWORD: ihifixpassword
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # optional, for connecting with pgAdmin
+
+volumes:
+  pgdata:
