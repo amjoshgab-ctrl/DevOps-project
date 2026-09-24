@@ -14,7 +14,7 @@ def get_db_connection():
 
 @app.route("/")
 def home():
-    return "Hello from IHIFIX Docker class!"
+    return "Deployed successfully to Render - Live!"
 
 @app.route("/health")
 def health():
